@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="users">press</button>
+
+    <div id="container"></div>
+
+    <script>
+        document.getElementById('users').onclick = () => {
+            document.getElementById('container').innerHTML = ''
+            fetch('/users')
+                .then(res => res.json())
+                .then(res => {
+                    console.log(res)
+                    let arrUsers = res.response
+                    arrUsers.forEach(element => {
+                        document.getElementById('container').innerHTML += `<div>имя: ${element.first_name}<br>фамилия: ${element.last_name}<br>возраст: ${element.age}<br><br></div>`
+                    });
+
+                })
+        }
+
+
+
+    </script>
+</body>
+
+</html>
